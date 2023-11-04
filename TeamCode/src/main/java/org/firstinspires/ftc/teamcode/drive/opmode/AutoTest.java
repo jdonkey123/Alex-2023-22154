@@ -17,7 +17,7 @@ public class AutoTest extends LinearOpMode {
 
         waitForStart();
 
-        if(isStopRequested()) return;
+        if(isStopRequested()) return 0;
 
 
         Trajectory traj = drive.trajectoryBuilder(new Pose2d(-63, 35))
@@ -25,5 +25,6 @@ public class AutoTest extends LinearOpMode {
                 .build();
 
         drive.followTrajectory(traj);
+        return 0;
     }
 }

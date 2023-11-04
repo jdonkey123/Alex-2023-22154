@@ -19,12 +19,13 @@ public class SplineTest extends LinearOpMode {
 
         waitForStart();
 
-        if (isStopRequested()) return;
+        if (isStopRequested()) return 0;
 
         Trajectory traj = drive.trajectoryBuilder(new Pose2d(-63,35))
                 .splineTo(new Vector2d(-33, -20), 0)
                 .build();
 
         drive.followTrajectory(traj);
+        return 0;
     }
 }

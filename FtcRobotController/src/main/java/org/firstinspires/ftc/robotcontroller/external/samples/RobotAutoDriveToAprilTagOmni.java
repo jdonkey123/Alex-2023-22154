@@ -198,6 +198,7 @@ public class RobotAutoDriveToAprilTagOmni extends LinearOpMode
             moveRobot(drive, strafe, turn);
             sleep(10);
         }
+        return 0;
     }
 
     /**

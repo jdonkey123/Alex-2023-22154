@@ -18,6 +18,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationCon
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.qualcomm.hardware.lynx.LynxModule;
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -55,6 +56,7 @@ import static org.firstinspires.ftc.teamcode.drive.DriveConstants.kV;
  */
 @Config
 public class SampleMecanumDrive extends MecanumDrive {
+
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(0, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(0, 0, 0);
 
@@ -79,6 +81,51 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     private List<Integer> lastEncPositions = new ArrayList<>();
     private List<Integer> lastEncVels = new ArrayList<>();
+
+    public static int GetColorF(HardwareMap hardwareMap) {
+        RevColorSensorV3 colorSensorF;
+
+        colorSensorF = hardwareMap.get(RevColorSensorV3.class, "ColorSensorF");
+        int r = colorSensorF.red();
+        int g = colorSensorF.green();
+        int b = colorSensorF.blue();
+
+        if (r >= g && r >= b) {
+            // Red
+            return 2;
+        } else if (g >= b && g >= r) {
+            //Green
+            return 1;
+        } else if (b > r && b > g) {
+            //blue
+            return 3;
+        }
+        return 1;
+
+        }
+
+    public static int GetColorR(HardwareMap hardwareMap) {
+        RevColorSensorV3 colorSensorR;
+
+        colorSensorR = hardwareMap.get(RevColorSensorV3.class, "ColorSensorR");
+        int r = colorSensorR.red();
+        int g = colorSensorR.green();
+        int b = colorSensorR.blue();
+
+        if (r >= g && r >= b) {
+            // Red
+            return 2;
+        } else if (g >= b && g >= r) {
+            //Green
+            return 1;
+        } else if (b > r && b > g) {
+            //blue
+            return 3;
+        }
+        return 1;
+
+    }
+
 
     public SampleMecanumDrive(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);

@@ -125,5 +125,6 @@ public class UtilityCameraFrameCapture extends LinearOpMode
 
             telemetry.update();
         }
+        return 0;
     }
 }

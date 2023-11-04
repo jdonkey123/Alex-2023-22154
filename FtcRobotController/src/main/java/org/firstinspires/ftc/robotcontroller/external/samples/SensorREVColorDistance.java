@@ -153,5 +153,6 @@ public class SensorREVColorDistance extends LinearOpMode {
                 relativeLayout.setBackgroundColor(Color.WHITE);
             }
         });
+        return relativeLayoutId;
     }
 }
